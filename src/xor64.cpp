@@ -50,8 +50,9 @@ String xorDecode64(String input, String key) {
   char* b64_buf = new char[b64_dec_len];
   base64_decode(b64_buf, (char*) input.c_str(), input_len);
 
-  char* xor_buf = new char[b64_dec_len];
+  char* xor_buf = new char[b64_dec_len+1];
   xorBuf(xor_buf, b64_buf, key.c_str(), b64_dec_len, key_len);
+  xor_buf[b64_dec_len] = '\0';
 
   String result(xor_buf);
 
