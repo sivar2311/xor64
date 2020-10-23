@@ -27,12 +27,12 @@ String xorEncode64(String input, String key) {
   char* b64_buf = new char[b64_enc_len];
   base64_encode(b64_buf, xor_buf, input_len);
 
-  String final(b64_buf);
+  String result(b64_buf);
 
   delete[] b64_buf;
   delete[] xor_buf;
 
-  return final;
+  return result;
 }
 
 /**
@@ -53,10 +53,10 @@ String xorDecode64(String input, String key) {
   char* xor_buf = new char[b64_dec_len];
   xorBuf(xor_buf, b64_buf, key.c_str(), b64_dec_len, key_len);
 
-  String final(xor_buf);
+  String result(xor_buf);
 
   delete[] xor_buf;
   delete[] b64_buf;
 
-  return final;
+  return result;
 }
