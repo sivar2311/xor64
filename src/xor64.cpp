@@ -19,12 +19,12 @@ String xorEncode64(String input, String key) {
   size_t input_len = input.length();
   size_t key_len = key.length();
   
-  char* xor_buf = new char[input_len];
+  char* xor_buf = new char[input_len+1];
   xorBuf(xor_buf, input.c_str(), key.c_str(), input_len, key_len);
 
   size_t b64_enc_len = base64_enc_len(input_len);
   
-  char* b64_buf = new char[b64_enc_len];
+  char* b64_buf = new char[b64_enc_len+1];
   base64_encode(b64_buf, xor_buf, input_len);
 
   String result(b64_buf);
@@ -47,7 +47,7 @@ String xorDecode64(String input, String key) {
   size_t key_len = key.length();
 
   size_t b64_dec_len = base64_dec_len((char*) input.c_str(), input_len);
-  char* b64_buf = new char[b64_dec_len];
+  char* b64_buf = new char[b64_dec_len+1];
   base64_decode(b64_buf, (char*) input.c_str(), input_len);
 
   char* xor_buf = new char[b64_dec_len+1];
